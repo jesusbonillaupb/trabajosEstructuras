@@ -1,0 +1,45 @@
+class proveedor:
+    def __init__(self,nombre,ciudad,articulos,activo):
+        self.nombre=nombre
+        self.ciudad=ciudad
+        self.articulos=articulos
+        self.activo=activo
+
+proveedor1=proveedor("juan","bucaramanga",23,True)
+proveedor2=proveedor("mateo","bogota",4,True)
+proveedor3=proveedor("luis","medellin",11,True)
+continuar=True
+while continuar==True:
+    print("1-consultar un proveedor\n2-actualizar ciudad ")
+    opciones=int(input("que deseas hacer: "))
+    if opciones==1:
+        n=input("ingrese el nombre del proveedor ")
+        if n==proveedor1.nombre or n==proveedor2.nombre or n==proveedor3.nombre:
+            if n==proveedor1.nombre:
+                print("ciudad=",proveedor1.ciudad,",numero de articulos=",proveedor1.articulos)
+            if n==proveedor2.nombre:
+                print("ciudad=",proveedor2.ciudad,",numero de articulos=",proveedor2.articulos)
+            if n==proveedor3.nombre:
+                print("ciudad=",proveedor3.ciudad,",numero de articulos=",proveedor3.articulos)
+        else:
+            print("proveedor no registrado")
+    if opciones==2:
+        if opciones==2:
+            nom=input("que proveedor se va a mudar= ")
+            ci=input("ciudad a la que se muda= ")
+        if nom==proveedor1.nombre or nom==proveedor2.nombre or nom==proveedor3.nombre:
+            if nom==proveedor1.nombre:
+                proveedor1.ciudad=ci
+                print(proveedor1.nombre,"se mudo a",proveedor1.ciudad)
+            if nom==proveedor2.nombre:
+                proveedor2.ciudad=ci
+                print(proveedor2.nombre,"se mudo a",proveedor2.ciudad)
+            if nom==proveedor3.nombre:
+                proveedor3.ciudad=ci
+                print(proveedor3.nombre,"se mudo a",proveedor3.ciudad)
+        else:
+            print("proveedor no registrado")
+    continuar=int(input("escriba 1 para continuar y 0 para finalizar "))
+    if continuar==0:
+        continuar=False
+print("el programa finalizo")
