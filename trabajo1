@@ -42,6 +42,13 @@ def añadiro(p,artpro,g):
     artpro.append(g)
     p.articulos=len(artpro)
 
+def eliminarpro(n,pb,vl):
+    pb.nombre=""
+    pb.ciudad=""
+    pb.articulos=0
+    pb.activo==False
+    vl.clear()
+    print(n,"fue dado de baja")
 
     
 
@@ -67,12 +74,22 @@ proveedor2=proveedor("mateo","bogota",numpro2,True,artpro2)
 proveedor3=proveedor("luis","medellin",numpro3,True,artpro3)
 proveedor4=proveedor(" ","",numpro4,False,artpro4)
 
+def validar():
+    if proveedor1.activo==False:
+        proveedor1.activo=True
+    elif proveedor2.activo==False:
+         proveedor2.activo=True
+    elif  proveedor3.activo==False:
+            proveedor3.activo=True
+    elif  proveedor4.activo==False:
+            proveedor4.activo=True
+
 #esto de aca es para que el programa continue
 continuar=True
 
 #programa principal
 while continuar==True:
-    print("1-consultar un proveedor\n2-actualizar ciudad\n3-actualizar numero articulos proveedor\n4-agregar proveedor")
+    print("1-consultar un proveedor\n2-actualizar ciudad\n3-actualizar numero articulos proveedor\n4-agregar proveedor\n5-eliminar a proveedor")
     opciones=int(input("que deseas hacer: "))
     if opciones==1:
         n=input("ingrese el nombre del proveedor ")
@@ -99,13 +116,13 @@ while continuar==True:
             if nom==proveedor1.nombre:
                 d=proveedor1
                 cambiarciudad(d,ci)
-            if nom==proveedor2.nombre:
+            elif nom==proveedor2.nombre:
                 d=proveedor2
                 cambiarciudad(d,ci)
-            if nom==proveedor3.nombre:
+            elif nom==proveedor3.nombre:
                 d=proveedor3
                 cambiarciudad(d,ci)
-            if nom==proveedor4.nombre:
+            elif nom==proveedor4.nombre:
                 d=proveedor4
                 cambiarciudad(d,ci) 
         else:
@@ -173,8 +190,8 @@ while continuar==True:
     if opciones==4:
         if proveedor1.activo==False or proveedor2.activo==False or proveedor3.activo==False or proveedor4.activo==False :
             print("ingrese los datos del nuevo proveedor")
-            nompro=input("ingrese el nombre proveedor: ")
-            ciudad=input("ingresa ciudad ")
+            nompro=input("ingrese el nombre del proveedor: ")
+            ciudad=input("ingrese la ciudad ")
             numeroart=int(input("ingrese el total de articulos del proveedor "))
             
             if numeroart>0:
@@ -196,17 +213,17 @@ while continuar==True:
                             proveedor1.articulos=len(artpro1)
                             proveedor1.nombre=nompro
                             proveedor1.ciudad=ciudad
-                        if proveedor2.activo==False:
+                        elif proveedor2.activo==False:
                             artpro2.append(g)
                             proveedor2.articulos=len(artpro2)
                             proveedor2.nombre=nompro
                             proveedor2.ciudad=ciudad
-                        if proveedor3.activo==False:
+                        elif proveedor3.activo==False:
                             artpro3.append(g)
                             proveedor3.articulos=len(artpro3)
                             proveedor3.nombre=nompro
                             proveedor3.ciudad=ciudad
-                        if proveedor4.activo==False:
+                        elif proveedor4.activo==False:
                             artpro4.append(g)
                             proveedor4.articulos=len(artpro4)
                             proveedor4.nombre=nompro
@@ -237,8 +254,30 @@ while continuar==True:
                             proveedor4.nombre=nompro
                             proveedor4.ciudad=ciudad
             print("proveedor guardado con exito")
+            validar()
         else:
             print("no hay espacio para mas proveedores, espera a que den de baja a uno")
+    if opciones==5:
+        n=input("ingrese el nombre del proveedor al cual quiere dar de baja ")
+        if n==proveedor1.nombre or n==proveedor2.nombre or n==proveedor3.nombre or n==proveedor4.nombre:
+            if n==proveedor1.nombre:
+                pb=proveedor1
+                vl=artpro1
+                eliminarpro(n,pb,vl)
+            if n==proveedor2.nombre:
+                pb=proveedor2
+                vl=artpro2
+                eliminarpro(n,pb,vl)
+            if n==proveedor3.nombre:
+                pb=proveedor3
+                vl=artpro3
+                eliminarpro(n,pb,vl)
+            if n==proveedor4.nombre:
+                pb=proveedor4
+                vl=artpro4
+                eliminarpro(n,pb,vl)    
+        else:
+            print("proveedor no registrado, no puedes eliminar a un proveedor que nisiquiera esta registrado")
     continuar=int(input("escriba 1 para continuar con programa y 0 para finalizarlo "))
     if continuar==0:
         continuar=False
