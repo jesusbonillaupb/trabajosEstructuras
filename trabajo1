@@ -38,17 +38,11 @@ def removerarticulo(nl,z):
         nl.remove(f)
         z.articulos=len(nl)
 
-def añadir(p,artpro,g,conta):
-    artpro.append(g)
-    p.articulos=len(conta)
-
 def añadiro(p,artpro,g):
     artpro.append(g)
     p.articulos=len(artpro)
 
-def añadircero(p,artpro,conta):
-    artpro.clear()
-    p.articulos=len(conta)
+
     
 
 #declararacion de articulos
@@ -177,48 +171,74 @@ while continuar==True:
             if cont==0:
                 con=False
     if opciones==4:
-        print("ingrese los datos")
-        nompro=input("ingrese el nombre proveedor: ")
-        ciudad=input("ingresa ciudad ")
-        numeroart=int(input("ingrese el total de articulos del proveedor "))
-        lt=[]
-        if proveedor1.activo==False:
-            p=proveedor1.nombre
-            artpro=artpro1
-            conta=artpro1
-        if proveedor2.activo==False:
-            p=proveedor2.nombre
-            artpro=artpro2
-            conta=artpro2
-        if proveedor3.activo==False:
-            p=proveedor3.nombre
-            artpro=artpro3
-            conta=artpro3
-        if proveedor4.activo==False:
-            p=proveedor4.nombre
-            artpro=artpro4
-            conta=artpro4
-        if numeroart>0:
-            print("agrege los",numeroart,"articulos del proveedor a la lista(de 1 en 1)")                                   
-            print("cual de estos productos quieres agregar?")
-            for i in range(1,numeroart+1):
-                agregar=int(input("1-papas fritas 2-chocoso 3-cocacola 4-ponymalta "))
-                if agregar==1:
-                    g=a1.name
-                if agregar==2:
-                    g=a2.name
-                if agregar==3:
-                    g=a3.name
-                if agregar==4:
-                    g=a4.name
-                if agregar==1 or agregar==2 or agregar==3 or agregar==4:
-                    añadir(p,artpro,g,conta)                    
-                else:
-                        print("este producto no esta registrado ") 
-        else:                               
-            print("el proveedor no tiene aun articulos")
-            añadircero(p,artpro,conta)
-        
+        if proveedor1.activo==False or proveedor2.activo==False or proveedor3.activo==False or proveedor4.activo==False :
+            print("ingrese los datos del nuevo proveedor")
+            nompro=input("ingrese el nombre proveedor: ")
+            ciudad=input("ingresa ciudad ")
+            numeroart=int(input("ingrese el total de articulos del proveedor "))
+            
+            if numeroart>0:
+                print("agrege los",numeroart,"articulos del proveedor a la lista(de 1 en 1)")                                   
+                print("cual de estos productos quieres agregar?")
+                for i in range(1,numeroart+1):
+                    agregar=int(input("1-papas fritas 2-chocoso 3-cocacola 4-ponymalta "))
+                    if agregar==1:
+                        g=a1.name
+                    if agregar==2:
+                        g=a2.name
+                    if agregar==3:
+                        g=a3.name
+                    if agregar==4:
+                        g=a4.name
+                    if agregar==1 or agregar==2 or agregar==3 or agregar==4:
+                        if proveedor1.activo==False:
+                            artpro1.append(g)
+                            proveedor1.articulos=len(artpro1)
+                            proveedor1.nombre=nompro
+                            proveedor1.ciudad=ciudad
+                        if proveedor2.activo==False:
+                            artpro2.append(g)
+                            proveedor2.articulos=len(artpro2)
+                            proveedor2.nombre=nompro
+                            proveedor2.ciudad=ciudad
+                        if proveedor3.activo==False:
+                            artpro3.append(g)
+                            proveedor3.articulos=len(artpro3)
+                            proveedor3.nombre=nompro
+                            proveedor3.ciudad=ciudad
+                        if proveedor4.activo==False:
+                            artpro4.append(g)
+                            proveedor4.articulos=len(artpro4)
+                            proveedor4.nombre=nompro
+                            proveedor4.ciudad=ciudad
+                            
+                    else:
+                            print("este producto no esta registrado ") 
+            else:                               
+                print("el proveedor no tiene aun articulos")
+                if proveedor1.activo==False:
+                            artpro1=[]
+                            proveedor1.articulos=len(artpro1)
+                            proveedor1.nombre=nompro
+                            proveedor1.ciudad=ciudad
+                if proveedor2.activo==False:
+                            artpro2=[]
+                            proveedor2.articulos=len(artpro2)
+                            proveedor2.nombre=nompro
+                            proveedor2.ciudad=ciudad
+                if proveedor3.activo==False:
+                            artpro3=[]
+                            proveedor3.articulos=len(artpro3)
+                            proveedor3.nombre=nompro
+                            proveedor3.ciudad=ciudad
+                if proveedor4.activo==False:
+                            artpro4=[]
+                            proveedor4.articulos=len(artpro4)
+                            proveedor4.nombre=nompro
+                            proveedor4.ciudad=ciudad
+            print("proveedor guardado con exito")
+        else:
+            print("no hay espacio para mas proveedores, espera a que den de baja a uno")
     continuar=int(input("escriba 1 para continuar con programa y 0 para finalizarlo "))
     if continuar==0:
         continuar=False
