@@ -221,17 +221,17 @@ while continuar==True:
                             proveedor1.articulos=len(artpro1)
                             proveedor1.nombre=nompro
                             proveedor1.ciudad=ciudad
-                if proveedor2.activo==False:
+                elif proveedor2.activo==False:
                             artpro2=[]
                             proveedor2.articulos=len(artpro2)
                             proveedor2.nombre=nompro
                             proveedor2.ciudad=ciudad
-                if proveedor3.activo==False:
+                elif proveedor3.activo==False:
                             artpro3=[]
                             proveedor3.articulos=len(artpro3)
                             proveedor3.nombre=nompro
                             proveedor3.ciudad=ciudad
-                if proveedor4.activo==False:
+                elif proveedor4.activo==False:
                             artpro4=[]
                             proveedor4.articulos=len(artpro4)
                             proveedor4.nombre=nompro
