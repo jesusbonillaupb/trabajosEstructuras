@@ -1,3 +1,8 @@
+#clases
+from concurrent.futures.process import _process_chunk
+from operator import truediv
+
+
 class proveedor:
     def __init__(self,nombre,ciudad,articulos,activo,listaarticulos):
         self.nombre=nombre
@@ -5,17 +10,54 @@ class proveedor:
         self.articulos=articulos
         self.activo=activo
         self.listaarticulos=listaarticulos
+
 class articulo:
      def __init__(self,id,name,valor):
          self.id=id
          self.name=name
          self.valor=valor
 
+#metodos
+def consultarciudad(d):
+    print("ciudad=",d.ciudad,",numero de articulos=",d.articulos)
+    pr=int(input("desea conocer cuales son sus articulos \n1-si 2-no "))
+    if pr==1:
+        print(d.listaarticulos)
+
+def cambiarciudad(d,ci):
+    d.ciudad=ci
+    print(d.nombre,"se mudo a",d.ciudad)
+
+def removerarticulo(nl,z):
+    print(nl)
+    f=input("escriba el nombre del producto que quiere remover ")
+    c=nl.count(f)
+    if c<1:
+        print("este producto no esta en la lista asi que no se puede")
+    else:
+        nl.remove(f)
+        z.articulos=len(nl)
+
+def añadir(p,artpro,g,conta):
+    artpro.append(g)
+    p.articulos=len(conta)
+
+def añadiro(p,artpro,g):
+    artpro.append(g)
+    p.articulos=len(artpro)
+
+def añadircero(p,artpro,conta):
+    artpro.clear()
+    p.articulos=len(conta)
+    
+
+#declararacion de articulos
 a1=articulo(2854,"papas fritas",1800)
 a2=articulo(3854,"chocoso",1200)
 a3=articulo(4854,"cocacola",1800)
 a4=articulo(4659,"ponymalta",1500)
 
+#configuracion de las listas
 artpro1=[a2.name,a2.name,a2.name,a3.name]
 numpro1=len(artpro1)
 artpro2=[a4.name,a3.name,a3.name]
@@ -24,37 +66,35 @@ artpro3=[a1.name,a3.name,a2.name]
 numpro3=len(artpro3)
 artpro4=[]
 numpro4=len(artpro3)
+
+#declaracion de objetos clase proveedor
 proveedor1=proveedor("juan","bucaramanga",numpro1,True,artpro1)
 proveedor2=proveedor("mateo","bogota",numpro2,True,artpro2)
 proveedor3=proveedor("luis","medellin",numpro3,True,artpro3)
 proveedor4=proveedor(" ","",numpro4,False,artpro4)
+
+#esto de aca es para que el programa continue
 continuar=True
+
+#programa principal
 while continuar==True:
-    print("1-consultar un proveedor\n2-actualizar ciudad\n3-actualizar numero articulos proveedor")
+    print("1-consultar un proveedor\n2-actualizar ciudad\n3-actualizar numero articulos proveedor\n4-agregar proveedor")
     opciones=int(input("que deseas hacer: "))
     if opciones==1:
         n=input("ingrese el nombre del proveedor ")
         if n==proveedor1.nombre or n==proveedor2.nombre or n==proveedor3.nombre or n==proveedor4.nombre:
             if n==proveedor1.nombre:
-                print("ciudad=",proveedor1.ciudad,",numero de articulos=",proveedor1.articulos)
-                pr=int(input("desea conocer cuales son sus articulos \n1-si 2-no "))
-                if pr==1:
-                    print(proveedor1.listaarticulos)
+                d=proveedor1
+                consultarciudad(d)
             if n==proveedor2.nombre:
-                print("ciudad=",proveedor2.ciudad,",numero de articulos=",proveedor2.articulos)
-                pr=int(input("desea conocer cuales son sus articulos \n1-si 2-no "))
-                if pr==1:
-                    print(proveedor2.listaarticulos)
+                d=proveedor2
+                consultarciudad(d)
             if n==proveedor3.nombre:
-                print("ciudad=",proveedor3.ciudad,",numero de articulos=",proveedor3.articulos)
-                pr=int(input("desea conocer cuales son sus articulos \n1-si 2-no "))
-                if pr==1:
-                    print(proveedor3.listaarticulos)
+                d=proveedor3
+                consultarciudad(d)
             if n==proveedor4.nombre:
-                print("ciudad=",proveedor4.ciudad,",numero de articulos=",proveedor4.articulos)
-                pr=int(input("desea conocer cuales son sus articulos \n1-si 2-no "))
-                if pr==1:
-                    print(proveedor4.listaarticulos)
+                d=proveedor4
+                consultarciudad(d)
         else:
             print("proveedor no registrado")
     if opciones==2:
@@ -63,17 +103,17 @@ while continuar==True:
             ci=input("ciudad a la que se muda= ")
         if nom==proveedor1.nombre or nom==proveedor2.nombre or nom==proveedor3.nombre or nom==proveedor4.nombre:
             if nom==proveedor1.nombre:
-                proveedor1.ciudad=ci
-                print(proveedor1.nombre,"se mudo a",proveedor1.ciudad)
+                d=proveedor1
+                cambiarciudad(d,ci)
             if nom==proveedor2.nombre:
-                proveedor2.ciudad=ci
-                print(proveedor2.nombre,"se mudo a",proveedor2.ciudad)
+                d=proveedor2
+                cambiarciudad(d,ci)
             if nom==proveedor3.nombre:
-                proveedor3.ciudad=ci
-                print(proveedor3.nombre,"se mudo a",proveedor3.ciudad)
+                d=proveedor3
+                cambiarciudad(d,ci)
             if nom==proveedor4.nombre:
-                proveedor4.ciudad=ci
-                print(proveedor4.nombre,"se mudo a",proveedor4.ciudad)    
+                d=proveedor4
+                cambiarciudad(d,ci) 
         else:
             print("proveedor no registrado")
     if opciones==3:
@@ -86,73 +126,98 @@ while continuar==True:
                     print("cual de estos productos quieres agregar?")
                     agregar=int(input("1-papas fritas 2-chocoso 3-cocacola 4-ponymalta "))
                     if agregar==1:
-                        d=a1.name
+                        g=a1.name
                     if agregar==2:
-                        d=a2.name
+                        g=a2.name
                     if agregar==3:
-                        d=a3.name
+                        g=a3.name
                     if agregar==4:
-                        d=a4.name
+                        g=a4.name
                     if agregar==1 or agregar==2 or agregar==3 or agregar==4:
                         if proca==proveedor1.nombre:
-                            artpro1.append(d)
-                            proveedor1.articulos=len(artpro1)
+                            p=proveedor1
+                            artpro=artpro1
+                            añadiro(p,artpro,g)
                         if proca==proveedor2.nombre:
-                            artpro2.append(d)
-                            proveedor2.articulos=len(artpro2)
+                            p=proveedor2
+                            artpro=artpro2
+                            añadiro(p,artpro,g)
                         if proca==proveedor3.nombre:
-                            artpro3.append(d)
-                            proveedor3.articulos=len(artpro3)
+                            p=proveedor3
+                            artpro=artpro3
+                            añadiro(p,artpro,g)
                         if proca==proveedor4.nombre:
-                            artpro4.append(d)
-                            proveedor4.articulos=len(artpro4)
+                            p=proveedor4
+                            artpro=artpro4
+                            añadiro(p,artpro,g)
                     else:
                         print("este producto no esta registrado")    
                 if cam==2:   
                     print("cual de estos productos quieres remover?")
                     if proca==proveedor1.nombre or proca==proveedor2.nombre or proca==proveedor3.nombre or proca==proveedor4.nombre:
                         if proca==proveedor1.nombre:
-                                print(artpro1)
-                                f=input("escriba el nombre del producto que quiere remover ")
-                                c=artpro1.count(f)
-                                if c<1:
-                                    print("este producto no esta en la lista asi que no se puede")
-                                else:
-                                    artpro1.remove(f)
-                                    proveedor1.articulos=len(artpro1)
+                            z=proveedor1
+                            nl=artpro1
+                            removerarticulo(nl,z)
                         if proca==proveedor2.nombre:
-                                print(artpro2)
-                                f=input("escriba el nombre del producto que quiere remover ")
-                                c=artpro2.count(f)
-                                if c<1:
-                                    print("este producto no esta en la lista asi que no se puede")
-                                else:
-                                    artpro2.remove(f)
-                                    proveedor2.articulos=len(artpro2)
+                            z=proveedor2
+                            nl=artpro2
+                            removerarticulo(nl,z)
                         if proca==proveedor3.nombre:
-                                print(artpro3)
-                                f=input("escriba el nombre del producto que quiere remover ")
-                                c=artpro3.count(f)
-                                if c<1:
-                                    print("este producto no esta en la lista asi que no se puede")
-                                else:
-                                    artpro3.remove(f)
-                                    proveedor3.articulos=len(artpro3)
+                            z=proveedor3
+                            nl=artpro3
+                            removerarticulo(nl,z)
                         if proca==proveedor4.nombre:
-                                print(artpro4)
-                                f=input("escriba el nombre del producto que quiere remover ")
-                                c=artpro4.count(f)
-                                if c<1:
-                                    print("este producto no esta en la lista asi que no se puede")
-                                else:
-                                    artpro4.remove(f)
-                                    proveedor4.articulos=len(artpro4)
+                            z=proveedor4
+                            nl=artpro4
+                            removerarticulo(nl,z)
             else:
                 print("proveedor no registrado")
             cont=int(input("quiere seguir actualizando productos? escriba 1 para continuar y 0 para finalizar "))
             if cont==0:
                 con=False
-                                                                                        
+    if opciones==4:
+        print("ingrese los datos")
+        nompro=input("ingrese el nombre proveedor: ")
+        ciudad=input("ingresa ciudad ")
+        numeroart=int(input("ingrese el total de articulos del proveedor "))
+        lt=[]
+        if proveedor1.activo==False:
+            p=proveedor1.nombre
+            artpro=artpro1
+            conta=artpro1
+        if proveedor2.activo==False:
+            p=proveedor2.nombre
+            artpro=artpro2
+            conta=artpro2
+        if proveedor3.activo==False:
+            p=proveedor3.nombre
+            artpro=artpro3
+            conta=artpro3
+        if proveedor4.activo==False:
+            p=proveedor4.nombre
+            artpro=artpro4
+            conta=artpro4
+        if numeroart>0:
+            print("agrege los",numeroart,"articulos del proveedor a la lista(de 1 en 1)")                                   
+            print("cual de estos productos quieres agregar?")
+            for i in range(1,numeroart+1):
+                agregar=int(input("1-papas fritas 2-chocoso 3-cocacola 4-ponymalta "))
+                if agregar==1:
+                    g=a1.name
+                if agregar==2:
+                    g=a2.name
+                if agregar==3:
+                    g=a3.name
+                if agregar==4:
+                    g=a4.name
+                if agregar==1 or agregar==2 or agregar==3 or agregar==4:
+                    añadir(p,artpro,g,conta)                    
+                else:
+                        print("este producto no esta registrado ") 
+        else:                               
+            print("el proveedor no tiene aun articulos")
+            añadircero(p,artpro,conta)
         
     continuar=int(input("escriba 1 para continuar con programa y 0 para finalizarlo "))
     if continuar==0:
