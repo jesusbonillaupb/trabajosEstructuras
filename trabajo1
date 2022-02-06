@@ -80,7 +80,7 @@ def validar():
     elif proveedor2.activo==False:
          proveedor2.activo=True
     elif  proveedor3.activo==False:
-            proveedor3.activo=True
+        proveedor3.activo=True
     elif  proveedor4.activo==False:
             proveedor4.activo=True
 
@@ -89,7 +89,7 @@ continuar=True
 
 #programa principal
 while continuar==True:
-    print("1-consultar un proveedor\n2-actualizar ciudad\n3-actualizar numero articulos proveedor\n4-agregar proveedor\n5-eliminar a proveedor")
+    print("0-cosultar proveedores registrados\n1-consultar un proveedor\n2-actualizar ciudad\n3-actualizar numero articulos proveedor\n4-agregar proveedor\n5-eliminar a proveedor\n6-para finalizar el programa")
     opciones=int(input("que deseas hacer: "))
     if opciones==1:
         n=input("ingrese el nombre del proveedor ")
@@ -191,94 +191,125 @@ while continuar==True:
         if proveedor1.activo==False or proveedor2.activo==False or proveedor3.activo==False or proveedor4.activo==False :
             print("ingrese los datos del nuevo proveedor")
             nompro=input("ingrese el nombre del proveedor: ")
-            ciudad=input("ingrese la ciudad ")
-            numeroart=int(input("ingrese el total de articulos del proveedor "))
-            
-            if numeroart>0:
-                print("agrege los",numeroart,"articulos del proveedor a la lista(de 1 en 1)")                                   
-                print("cual de estos productos quieres agregar?")
-                for i in range(1,numeroart+1):
-                    agregar=int(input("1-papas fritas 2-chocoso 3-cocacola 4-ponymalta "))
-                    if agregar==1:
-                        g=a1.name
-                    if agregar==2:
-                        g=a2.name
-                    if agregar==3:
-                        g=a3.name
-                    if agregar==4:
-                        g=a4.name
-                    if agregar==1 or agregar==2 or agregar==3 or agregar==4:
-                        if proveedor1.activo==False:
-                            artpro1.append(g)
-                            proveedor1.articulos=len(artpro1)
-                            proveedor1.nombre=nompro
-                            proveedor1.ciudad=ciudad
-                        elif proveedor2.activo==False:
-                            artpro2.append(g)
-                            proveedor2.articulos=len(artpro2)
-                            proveedor2.nombre=nompro
-                            proveedor2.ciudad=ciudad
-                        elif proveedor3.activo==False:
-                            artpro3.append(g)
-                            proveedor3.articulos=len(artpro3)
-                            proveedor3.nombre=nompro
-                            proveedor3.ciudad=ciudad
-                        elif proveedor4.activo==False:
-                            artpro4.append(g)
-                            proveedor4.articulos=len(artpro4)
-                            proveedor4.nombre=nompro
-                            proveedor4.ciudad=ciudad
-                            
-                    else:
-                            print("este producto no esta registrado ") 
-            else:                               
-                print("el proveedor no tiene aun articulos")
+            if nompro==proveedor1.nombre or nompro==proveedor2.nombre or nompro==proveedor3.nombre or nompro==proveedor4.nombre:
+                print("ya hay un proveedor con ese nombre")
+            else:
+                ciudad=input("ingrese la ciudad ")
+                numeroart=int(input("ingrese el total de articulos del proveedor "))
+                
+                if numeroart>0:
+                    print("agrege los",numeroart,"articulos del proveedor a la lista(de 1 en 1)")                                   
+                    print("cual de estos productos quieres agregar?")
+                    for i in range(1,numeroart+1):
+                        
+                        agregar=int(input("1-papas fritas 2-chocoso 3-cocacola 4-ponymalta "))
+                        if agregar==1:
+                            g=a1.name
+                        if agregar==2:
+                            g=a2.name
+                        if agregar==3:
+                            g=a3.name
+                        if agregar==4:
+                            g=a4.name
+                        if agregar==1 or agregar==2 or agregar==3 or agregar==4:
+                            if proveedor1.activo==False:
+                                artpro1.append(g)
+                                proveedor1.articulos=len(artpro1)
+                                proveedor1.nombre=nompro
+                                proveedor1.ciudad=ciudad
+                            elif proveedor2.activo==False:
+                                artpro2.append(g)
+                                proveedor2.articulos=len(artpro2)
+                                proveedor2.nombre=nompro
+                                proveedor2.ciudad=ciudad
+                            elif proveedor3.activo==False:
+                                artpro3.append(g)
+                                proveedor3.articulos=len(artpro3)
+                                proveedor3.nombre=nompro
+                                proveedor3.ciudad=ciudad
+                            elif proveedor4.activo==False:
+                                artpro4.append(g)
+                                proveedor4.articulos=len(artpro4)
+                                proveedor4.nombre=nompro
+                                proveedor4.ciudad=ciudad
+                            print(i,"de",numeroart,"agregado(s)")  
+                        else:
+                                print("este producto no esta registrado ") 
+                else:                               
+                    print("el proveedor no tiene aun articulos")
+                    if proveedor1.activo==False:
+                                artpro1=[]
+                                proveedor1.articulos=len(artpro1)
+                                proveedor1.nombre=nompro
+                                proveedor1.ciudad=ciudad
+                    elif proveedor2.activo==False:
+                                artpro2=[]
+                                proveedor2.articulos=len(artpro2)
+                                proveedor2.nombre=nompro
+                                proveedor2.ciudad=ciudad
+                    elif proveedor3.activo==False:
+                                artpro3=[]
+                                proveedor3.articulos=len(artpro3)
+                                proveedor3.nombre=nompro
+                                proveedor3.ciudad=ciudad
+                    elif proveedor4.activo==False:
+                                artpro4=[]
+                                proveedor4.articulos=len(artpro4)
+                                proveedor4.nombre=nompro
+                                proveedor4.ciudad=ciudad
+                print("proveedor guardado con exito")
                 if proveedor1.activo==False:
-                            artpro1=[]
-                            proveedor1.articulos=len(artpro1)
-                            proveedor1.nombre=nompro
-                            proveedor1.ciudad=ciudad
+                    proveedor1.activo=True
                 elif proveedor2.activo==False:
-                            artpro2=[]
-                            proveedor2.articulos=len(artpro2)
-                            proveedor2.nombre=nompro
-                            proveedor2.ciudad=ciudad
-                elif proveedor3.activo==False:
-                            artpro3=[]
-                            proveedor3.articulos=len(artpro3)
-                            proveedor3.nombre=nompro
-                            proveedor3.ciudad=ciudad
-                elif proveedor4.activo==False:
-                            artpro4=[]
-                            proveedor4.articulos=len(artpro4)
-                            proveedor4.nombre=nompro
-                            proveedor4.ciudad=ciudad
-            print("proveedor guardado con exito")
-            validar()
+                    proveedor2.activo=True
+                elif  proveedor3.activo==False:
+                    proveedor3.activo=True
+                elif  proveedor4.activo==False:
+                    proveedor4.activo=True
         else:
             print("no hay espacio para mas proveedores, espera a que den de baja a uno")
     if opciones==5:
-        n=input("ingrese el nombre del proveedor al cual quiere dar de baja ")
+        n=input("ingrese el nombre del proveedor al cual quiere dar de baja: ")
         if n==proveedor1.nombre or n==proveedor2.nombre or n==proveedor3.nombre or n==proveedor4.nombre:
             if n==proveedor1.nombre:
                 pb=proveedor1
                 vl=artpro1
+                proveedor1.activo=False
                 eliminarpro(n,pb,vl)
             if n==proveedor2.nombre:
                 pb=proveedor2
                 vl=artpro2
+                proveedor2.activo=False
                 eliminarpro(n,pb,vl)
             if n==proveedor3.nombre:
                 pb=proveedor3
                 vl=artpro3
+                proveedor3.activo=False
                 eliminarpro(n,pb,vl)
             if n==proveedor4.nombre:
                 pb=proveedor4
                 vl=artpro4
+                proveedor4.activo=False
                 eliminarpro(n,pb,vl)    
         else:
             print("proveedor no registrado, no puedes eliminar a un proveedor que nisiquiera esta registrado")
-    continuar=int(input("escriba 1 para continuar con programa y 0 para finalizarlo "))
+    if opciones==0:
+        listaproveedores=[]
+        if proveedor1.activo==True:
+            listaproveedores.append(proveedor1.nombre)
+        if proveedor2.activo==True:
+            listaproveedores.append(proveedor2.nombre)
+        if proveedor3.activo==True:
+            listaproveedores.append(proveedor3.nombre)
+        if proveedor4.activo==True:
+            listaproveedores.append(proveedor4.nombre)
+        print("estos son los proveedores actualmente registrados")
+        print(listaproveedores)
+    if opciones==6:
+        print("seguro que quieres finalizar el programa?")
+    if opciones<0 or opciones>6:
+        print("opcion no valida")
+    continuar=int(input("escriba 1 para continuar con el programa y 0 para finalizarlo "))
     if continuar==0:
         continuar=False
 print("el programa finalizo")
