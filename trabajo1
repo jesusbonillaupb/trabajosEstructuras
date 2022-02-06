@@ -66,13 +66,16 @@ numpro2=len(artpro2)
 artpro3=[a1.name,a3.name,a2.name]
 numpro3=len(artpro3)
 artpro4=[]
-numpro4=len(artpro3)
+numpro4=len(artpro4)
+artpro5=[]
+numpro5=len(artpro3)
 
 #declaracion de objetos clase proveedor
 proveedor1=proveedor("juan","bucaramanga",numpro1,True,artpro1)
 proveedor2=proveedor("mateo","bogota",numpro2,True,artpro2)
 proveedor3=proveedor("luis","medellin",numpro3,True,artpro3)
 proveedor4=proveedor(" ","",numpro4,False,artpro4)
+proveedor5=proveedor(" ","",numpro5,False,artpro5)
 
 def validar():
     if proveedor1.activo==False:
@@ -83,7 +86,8 @@ def validar():
         proveedor3.activo=True
     elif  proveedor4.activo==False:
             proveedor4.activo=True
-
+    elif  proveedor5.activo==False:
+            proveedor5.activo=True
 #esto de aca es para que el programa continue
 continuar=True
 
@@ -93,7 +97,7 @@ while continuar==True:
     opciones=int(input("que deseas hacer: "))
     if opciones==1:
         n=input("ingrese el nombre del proveedor ")
-        if n==proveedor1.nombre or n==proveedor2.nombre or n==proveedor3.nombre or n==proveedor4.nombre:
+        if n==proveedor1.nombre or n==proveedor2.nombre or n==proveedor3.nombre or n==proveedor4.nombre or n==proveedor5.nombre:
             if n==proveedor1.nombre:
                 d=proveedor1
                 consultarciudad(d)
@@ -106,13 +110,16 @@ while continuar==True:
             if n==proveedor4.nombre:
                 d=proveedor4
                 consultarciudad(d)
+            if n==proveedor5.nombre:
+                d=proveedor5
+                consultarciudad(d)
         else:
             print("proveedor no registrado")
     if opciones==2:
         if opciones==2:
             nom=input("que proveedor se va a mudar= ")
             ci=input("ciudad a la que se muda= ")
-        if nom==proveedor1.nombre or nom==proveedor2.nombre or nom==proveedor3.nombre or nom==proveedor4.nombre:
+        if nom==proveedor1.nombre or nom==proveedor2.nombre or nom==proveedor3.nombre or nom==proveedor4.nombre or nom==proveedor5.nombre:
             if nom==proveedor1.nombre:
                 d=proveedor1
                 cambiarciudad(d,ci)
@@ -125,13 +132,16 @@ while continuar==True:
             elif nom==proveedor4.nombre:
                 d=proveedor4
                 cambiarciudad(d,ci) 
+            elif nom==proveedor5.nombre:
+                d=proveedor5
+                cambiarciudad(d,ci) 
         else:
             print("proveedor no registrado")
     if opciones==3:
         con=True
         while con==True:
             proca=input("escribe el nombre del proveedor ")
-            if proca==proveedor1.nombre or proca==proveedor2.nombre or proca==proveedor3.nombre or proca==proveedor4.nombre:
+            if proca==proveedor1.nombre or proca==proveedor2.nombre or proca==proveedor3.nombre or proca==proveedor4.nombre or proca==proveedor5.nombre:
                 cam=int(input("1-para agregar un articulo\n2-para elminar un articulo "))
                 if cam==1:
                     print("cual de estos productos quieres agregar?")
@@ -161,11 +171,15 @@ while continuar==True:
                             p=proveedor4
                             artpro=artpro4
                             añadiro(p,artpro,g)
+                        if proca==proveedor5.nombre:
+                            p=proveedor5
+                            artpro=artpro5
+                            añadiro(p,artpro,g)
                     else:
                         print("este producto no esta registrado")    
                 if cam==2:   
                     print("cual de estos productos quieres remover?")
-                    if proca==proveedor1.nombre or proca==proveedor2.nombre or proca==proveedor3.nombre or proca==proveedor4.nombre:
+                    if proca==proveedor1.nombre or proca==proveedor2.nombre or proca==proveedor3.nombre or proca==proveedor4.nombre or proca==proveedor5.nombre:
                         if proca==proveedor1.nombre:
                             z=proveedor1
                             nl=artpro1
@@ -182,16 +196,20 @@ while continuar==True:
                             z=proveedor4
                             nl=artpro4
                             removerarticulo(nl,z)
+                        if proca==proveedor5.nombre:
+                            z=proveedor5
+                            nl=artpro5
+                            removerarticulo(nl,z)
             else:
                 print("proveedor no registrado")
             cont=int(input("quiere seguir actualizando productos? escriba 1 para continuar y 0 para finalizar "))
             if cont==0:
                 con=False
     if opciones==4:
-        if proveedor1.activo==False or proveedor2.activo==False or proveedor3.activo==False or proveedor4.activo==False :
+        if proveedor1.activo==False or proveedor2.activo==False or proveedor3.activo==False or proveedor4.activo==False or proveedor5.activo==False  :
             print("ingrese los datos del nuevo proveedor")
             nompro=input("ingrese el nombre del proveedor: ")
-            if nompro==proveedor1.nombre or nompro==proveedor2.nombre or nompro==proveedor3.nombre or nompro==proveedor4.nombre:
+            if nompro==proveedor1.nombre or nompro==proveedor2.nombre or nompro==proveedor3.nombre or nompro==proveedor4.nombre or nompro==proveedor5.nombre:
                 print("ya hay un proveedor con ese nombre")
             else:
                 ciudad=input("ingrese la ciudad ")
@@ -232,6 +250,11 @@ while continuar==True:
                                 proveedor4.articulos=len(artpro4)
                                 proveedor4.nombre=nompro
                                 proveedor4.ciudad=ciudad
+                            elif proveedor5.activo==False:
+                                artpro5.append(g)
+                                proveedor5.articulos=len(artpro4)
+                                proveedor5.nombre=nompro
+                                proveedor5.ciudad=ciudad
                             print(i,"de",numeroart,"agregado(s)")  
                         else:
                                 print("este producto no esta registrado ") 
@@ -257,6 +280,11 @@ while continuar==True:
                                 proveedor4.articulos=len(artpro4)
                                 proveedor4.nombre=nompro
                                 proveedor4.ciudad=ciudad
+                    elif proveedor5.activo==False:
+                                artpro5=[]
+                                proveedor5.articulos=len(artpro4)
+                                proveedor5.nombre=nompro
+                                proveedor5.ciudad=ciudad
                 print("proveedor guardado con exito")
                 if proveedor1.activo==False:
                     proveedor1.activo=True
@@ -266,11 +294,13 @@ while continuar==True:
                     proveedor3.activo=True
                 elif  proveedor4.activo==False:
                     proveedor4.activo=True
+                elif  proveedor5.activo==False:
+                    proveedor5.activo=True
         else:
             print("no hay espacio para mas proveedores, espera a que den de baja a uno")
     if opciones==5:
         n=input("ingrese el nombre del proveedor al cual quiere dar de baja: ")
-        if n==proveedor1.nombre or n==proveedor2.nombre or n==proveedor3.nombre or n==proveedor4.nombre:
+        if n==proveedor1.nombre or n==proveedor2.nombre or n==proveedor3.nombre or n==proveedor4.nombre or n==proveedor5.nombre:
             if n==proveedor1.nombre:
                 pb=proveedor1
                 vl=artpro1
@@ -290,7 +320,12 @@ while continuar==True:
                 pb=proveedor4
                 vl=artpro4
                 proveedor4.activo=False
-                eliminarpro(n,pb,vl)    
+                eliminarpro(n,pb,vl)   
+            if n==proveedor5.nombre:
+                pb=proveedor5
+                vl=artpro5
+                proveedor5.activo=False
+                eliminarpro(n,pb,vl)     
         else:
             print("proveedor no registrado, no puedes eliminar a un proveedor que nisiquiera esta registrado")
     if opciones==0:
@@ -303,6 +338,8 @@ while continuar==True:
             listaproveedores.append(proveedor3.nombre)
         if proveedor4.activo==True:
             listaproveedores.append(proveedor4.nombre)
+        if proveedor5.activo==True:
+            listaproveedores.append(proveedor5.nombre)
         print("estos son los proveedores actualmente registrados")
         print(listaproveedores)
     if opciones==6:
