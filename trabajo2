@@ -1,0 +1,37 @@
+def cuadradomagico(n):  
+    lst=[[0 for i in range(n)]for i in range(n)]
+    lst[0][n//2]=1
+    renglon=0
+    columna=n//2
+    for i in range(2,n**2+1):
+        if renglon-1<0:
+            renglon=n-1
+        else:
+            renglon-=1
+        if columna+1==n:
+            columna=0
+        else:
+            columna+=1
+        while 1:
+            if lst[renglon][columna]==0:
+                lst[renglon][columna]=i
+                break
+            else:
+                for a in range(n):
+                    for b in range(n):
+                        if lst[a][b]==i-1:
+                            num_antren=a
+                            num_antcol=b
+                renglon=num_antren+1
+                columna=num_antcol
+                if renglon>n-1:
+                    renglon=0
+    for i in lst:
+        print(i)
+
+
+n = int(input("ingresa un numero que sea entero, impar y positivo "))
+if n%2==0 and n>0:
+    print("numero invalido, escribe un numero valido porfavor")
+else:
+    cuadradomagico(n)
