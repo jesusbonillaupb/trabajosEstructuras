@@ -2,10 +2,10 @@ class Node:
     def __init__(self, Value) :
         self.Value = Value
         self.Next = None
-        
+        self.Prev = None
         
     
-    def __str__(self):
+    def str(self):
         return str(self.Value)
 
 class LinkedList:
@@ -14,7 +14,9 @@ class LinkedList:
         self.First = None
         self.Tail= None
         self.Size = 0
-
+    def vacia(self):
+        if self.First== None:
+            return True
     
     def Append(self,Value):
     ##Agrega un elemento al final de la lista.
@@ -48,16 +50,19 @@ class LinkedList:
     def Intsize(self):
         return self.Size
 Mylist= LinkedList()
-Mylist.Append("2")
-Mylist.Append("3")
-Mylist.Append("4")
+Mylist.Append(2)
+Mylist.Append(3)
+Mylist.Append(4)
 
 Current = Mylist.First
 a=""
 
+
 while Current.Next != None:
-    a+=Current.Value
+    a+=Current.str()
     Current= Current.Next
-a+=Current.Value    
+a+=Current.str()  
 print(a)
+
+
 print(Mylist.Intsize())
