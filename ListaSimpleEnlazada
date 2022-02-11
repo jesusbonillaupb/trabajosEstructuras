@@ -1,0 +1,68 @@
+class Node:
+    def __init__(self, Value) :
+        self.Value = Value
+        self.Next = None
+    
+    def __str__(self):
+        return str(self.Value)
+
+class LinkedList:
+    def __init__(self) :
+    
+        self.First = None
+        self.Size = 0
+    
+    def Append(self,Value):
+    ##Agrega un elemento al final de la lista.
+        MyNode=Node(Value)
+        if self.Size == 0: 
+            self.First = MyNode
+        else:
+            Current = self.First
+            while Current.Next != None:
+                Current= Current.Next
+            Current.Next= MyNode
+        self.Size += 1
+
+        return MyNode
+    
+    def Remove(self,Value):
+    ##Elimina el nodo en la lista.
+        if self.Size == 0:
+            return False
+        else:
+            Current=self.First
+            while Current.Next.Value != Value:
+                if Current.Next == None:
+                    return False
+                else:
+                    Current=Current.Next
+            BorrarNode = Current.Next
+            Current.Next = BorrarNode.Next
+        self.Size-=1
+
+        return BorrarNode
+    def Intsize(self):
+        return self.Size
+
+Mylist= LinkedList()
+Mylist.Append(2)
+print(Mylist)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
